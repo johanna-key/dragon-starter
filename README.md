@@ -1,2 +1,3 @@
-# dragon-starter
-dragon starter
+# dragonstarter
+
+Dragonfly automatisch bei boot starten

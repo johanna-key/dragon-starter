@@ -1,0 +1,19 @@
+@echo off
+choice /M "Neu Installieren, Y/N" /C YN
+if %ERORRLEVEL% == 1 goto reinstall
+goto end
+
+rem ----------------------------------------
+:reinstall
+conda create -n pytorch3d python=3.8
+conda activate pytorch3d
+conda install -c pytorch pytorch=1.7.1 torchvision cudatoolkit=10.2
+conda install -c fvcore -c iopath -c conda-forge fvcore iopath
+conda install -c bottler nvidiacub
+curl -LO https://github.com/NVIDIA/cub/archive/1.10.0.tar.gz
+tar xzf 1.10.0.tar.gz
+export CUB_HOME=$PWD/cub-1.10.0
+
+conda install scikitimage
+rem ----------------------------------------
+:end

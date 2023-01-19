@@ -1,0 +1,20 @@
+gpus = tf.config.list_physical_devices('GPU')
+if gpus:
+  # Restrict TensorFlow to only use the first GPU
+  try:
+    tf.config.set_visible_devices(gpus[1], 'GPU')
+    logical_gpus = tf.config.list_logical_devices('GPU')
+    print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPU")
+  except RuntimeError as e:
+    # Visible devices must be set before GPUs have been initialized
+    print(e)
+
+
+sys_details=tf.sysconfig.get_build_info()
+cuda_version=sys_details["cuda_version"]
+print(cuda_version)
+
+
+msave=D:\Johanna\Dokumente\Python_Scripts\u-net_fchollet-master\saved_pretrained_models
+$ ls {D:\Johanna\Dokumente\Python_Scripts\u-net_fchollet-master\saved_pretrained_models}/variables
+

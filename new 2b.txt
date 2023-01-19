@@ -1,0 +1,27 @@
+
+def __getitem__(self, idx):
+    """Returns tuple (input, target) correspond to batch #idx."""
+    i = idx * self.batch_size
+    batch_input_img_paths = self.input_img_paths[i : i + self.batch_size]
+    batch_target_img_paths = []
+    if self.target_img_paths != None:
+        batch_target_img_paths = self.target_img_paths[i : i + self.batch_size]
+    x = np.zeros((self.batch_size,) + self.img_size + (3,), dtype="float32")
+    for j, path in enumerate(batch_input_img_paths):
+        img = load_img(path, target_size=self.img_size)
+        if self.norm == 'mean':
+            x[j] = (np.array(img)-np.mean(img))/np.std(img)
+        if self.norm == 'mod':
+            mod, _ = self.histstat(np.array(img))
+            x[j] = (np.array(img)-mod)/np.std(img)
+        elif self.norm == 'shifty':
+            x[j] = self.shifty(img)
+        else:
+            x[j] = np.array(img)
+    if self.target_img_paths != None:
+        y = np.zeros((self.batch_size,) + self.img_size + (1,), dtype="uint8")
+        for j, path in enumerate(batch_target_img_paths):
+            img = load_img(path, target_size=self.img_size, color_mode="grayscale")
+            y[j] = np.expand_dims(img, 2)
+        return x, y
+    return x

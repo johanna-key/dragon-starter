@@ -1,0 +1,20 @@
+git in Windows
+
+Confiuration
+^^^^^^^^^^^^
+globale ausgeben
+  git config --global --list
+
+Editor für commit etc. setzen
+  git config --global core.editor "'C:\Program Files\Notepad++\notepad++.exe' -multiInst -notabbar -nosession -noPlugin" 
+
+Encoding auf UTF-8 setzen
+  git config --global gui.encoding=utf-8
+
+Userdaten
+  git config --global user.name=Mein Name
+  git config --global user.email=meine@adresse.at
+  
+In notepad++ integrieren
+  https://github.com/alansbraga/NPPGit
+  vermutlich muss nur irgendein git installiert sein, da die dll "because this plugin simply uses the command line features of TortoiseGit"

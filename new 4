@@ -1,0 +1,32 @@
+slic = -1
+data = np.copy(element)
+reg=[]
+for i,j in enumerate(element):
+	w=water_contur(data, value)
+	erg.append(w)
+erg=np.array(erg)
+
+imcolor(color.label2rgb(erg[9], data[9], bg_label=0), 'color')
+# %%
+means = []
+stds = []
+for i,j in enumerate(np.unique(erg)):
+    dat = data[reg==j]
+    means.append(np.mean(dat[dat>0]))
+    stds.append(np.std(dat[dat>0]))
+# %%
+
+regy = np.copy(erg)
+meaned =(np.array(means)<17e3)[erg]
+regy[meaned]=0
+imcolor(regy[9], 'regy')
+# %%
+implot(np.where(regy[9]>0, data[9], 0))
+# %%
+csofar = np.where(regy>0, data, 0)
+
+erg_neu = []
+for i, j in enumerate(csofar)
+	water_contur(j, 1.e4)
+
+imcolor(color.label2rgb(erg_neu[9], csofar[9], bg_label=0), 'csofar')
